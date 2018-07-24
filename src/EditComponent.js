@@ -15,7 +15,21 @@ handleEdit = (e) => {
     newEmail,
     newPhone
   }
-  this.props.dispatch({ type: 'UPDATE', id: this.props.post.id, data: data })
+  let number = /^[0-9]+$/;
+  let emailTest = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if(emailTest.test(this.getEmail.value)==''){
+       alert("Please enter a valid email");
+     }
+   else if(number.test(this.getPhone.value)==''){
+    alert("Please enter only digits for Phone Number");
+  }
+  else if(this.getPhone.value.length>10){
+     alert("Please enter only 10 digit phone number")
+   }
+   else{
+     this.props.dispatch({ type: 'UPDATE', id: this.props.post.id, data: data })
+   }
+
 }
 render() {
 return (
